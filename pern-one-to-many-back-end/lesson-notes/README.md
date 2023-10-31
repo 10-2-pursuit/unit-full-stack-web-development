@@ -276,10 +276,9 @@ Create a new Query
 const createOneReview = async (bookmark_id, review) => {
   try {
     const { reviewer, rating, content, title } = review;
-    const createdReview = await db.one(
-      `INSERT INTO reviews (reviewer, rating, content, title, bookmark_id) 
-                 VALUES 
-                 ($1, $2, $3, $4, $5) RETURNING *`,
+      `INSERT INTO reviews (reviewer, rating, content, title, bookmark_id)
+       VALUES 
+       ($1, $2, $3, $4, $5) RETURNING *`,
       [reviewer, rating, content, title, bookmark_id]
     );
     return createdReview;
